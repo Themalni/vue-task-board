@@ -1,17 +1,22 @@
 <template>
   <div class="board">
     <div class="board-header">
-      <slot name="header"></slot>
+      <h1>{{ header }}</h1>
     </div>
     <div class="board-body">
-      <slot name="body"></slot>
+      <slot></slot>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Board"
+  name: "Board",
+  props: {
+    header: {
+      type: String
+    }
+  }
 };
 </script>
 
