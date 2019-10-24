@@ -14,10 +14,10 @@ export default new Vuex.Store({
     tasks: state => state.tasks
   },
   mutations: {
-
+    // OPEN_MODAL (state) { state.productPreview = [] }
   },
   actions: {
-
+    // openModal (contex) { context.commit('OPEN_MODAL') }
   },
   plugins: [vuexLocalStorage.plugin]
 })
