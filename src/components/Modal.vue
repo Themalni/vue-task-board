@@ -5,10 +5,10 @@
         <h3 class="modal-header-text">{{ title }}</h3>
         <Button-Close @close="closeModal()"></Button-Close>
       </div>
-      <div class="board-body">
+      <div class="modal-body">
         <slot name="body"></slot>
       </div>
-      <div class="board-footer">
+      <div class="modal-footer">
         <slot name="footer"></slot>
       </div>
     </div>
@@ -55,7 +55,7 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  box-shadow: 0px 5px 10px -5px $graphite;
+  box-shadow: 0px 2px 10px -5px $graphite;
   background-color: $white;
   border-radius: 4px;
   padding: 1.5em;
@@ -66,7 +66,12 @@ export default {
   flex-direction: row;
   justify-content: space-between;
 }
-.board-footer {
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+}
+.modal-footer {
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;

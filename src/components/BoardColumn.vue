@@ -22,9 +22,10 @@ export default {
 .column {
   display: flex;
   flex-direction: column;
-  width: 30%;
-  height: 100vh;
-  padding: 1em 1em 1.5em;
+  width: 250px;
+  min-height: 100%;
+  margin-right: 0.5em;
+  padding: 1em 0.5em 0.7em;
   border-radius: 4px;
   background-color: $grey;
   box-shadow: 0 1px 5px -3px $graphite;

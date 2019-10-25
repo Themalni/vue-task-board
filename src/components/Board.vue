@@ -7,53 +7,37 @@
     <div class="board-body">
       <slot></slot>
     </div>
-    <Modal v-if="isOpen" title="Stwórz nowe zadanie" :isOpen="isOpen">
-      <template v-slot:body>
-        <textarea
-          class="mt-2"
-          name="description"
-          type="textarea"
-          label="Description"
-          v-model="description"
-          placeholder="Dodaj opis zadania..."
-          rows="10"
-        ></textarea>
-      </template>
-      <template v-slot:footer>
-        <Button color="button-primary" @addAction="openModal()">Zachowaj</Button>
-        <Button class="ml-2" color="button-default" @addAction="closeModal()">Anuluj</Button>
-      </template>
-    </Modal>
+    <Task-Modal v-if="modalIsOpen"></Task-Modal>
   </div>
 </template>
 
 <script>
 import Button from "@/elements/Button";
-import Modal from "@/components/Modal";
+import TaskModal from "@/components/TaskModal";
 
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "Board",
   components: {
     Button,
-    Modal
+    TaskModal
   },
   data: () => ({
-    isOpen: false
+    id: null
   }),
   props: {
     header: {
       type: String
     }
   },
+  computed: {
+    ...mapGetters(["modalIsOpen"])
+  },
   methods: {
-    ...mapActions(["createNewTask"]),
+    ...mapActions(["changeModalState"]),
     openModal() {
-      this.isOpen = true;
-    },
-    closeModal() {
-      this.isOpen = false;
+      this.$store.dispatch("changeModalState", true);
     }
   }
 };
@@ -77,13 +61,12 @@ export default {
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 textarea {
   padding: 1em;
   border: 1px dashed $grey;
   outline: none;
-  width: 100%;
   resize: none;
   font-family: "Noto Sans", sans-serif;
   font-size: 0.8em;
