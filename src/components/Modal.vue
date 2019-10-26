@@ -1,40 +1,37 @@
 <template>
   <transition name="fade">
-    <div class="modal">
-      <div class="modal-header">
-        <h3 class="modal-header-text">{{ title }}</h3>
-        <Button-Close @close="closeModal()"></Button-Close>
-      </div>
-      <div class="modal-body">
-        <slot name="body"></slot>
-      </div>
-      <div class="modal-footer">
-        <slot name="footer"></slot>
+    <div class="overlay">
+      <div class="modal" :class="{ 'w-25': small }">
+        <div class="modal-header">
+          <h3 class="modal-header-text text-white">{{ title }}</h3>
+          <h3 v-if="status" class="modal-header-text text-white ml-1">({{ status }})</h3>
+        </div>
+        <div class="modal-body">
+          <slot name="body"></slot>
+        </div>
+        <div class="modal-footer">
+          <slot name="footer"></slot>
+        </div>
       </div>
     </div>
   </transition>
 </template>
 
 <script>
-import ButtonClose from "@/elements/ButtonClose";
 
 export default {
   name: "Modal",
-  components: {
-    ButtonClose
-  },
   props: {
     title: {
       type: String
     },
-    isOpen: {
+    status: {
+      type: [String, Boolean],
+      default: false
+    },
+    small: {
       type: Boolean,
       default: false
-    }
-  },
-  methods: {
-    closeModal() {
-      this.isOpen = false;
     }
   }
 };
@@ -49,27 +46,40 @@ export default {
 .fade-leave-to {
   opacity: 0;
 }
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0, 0.4);
+  z-index: 998;
+}
 .modal {
   width: 40%;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  box-shadow: 0px 2px 10px -5px $graphite;
+  box-shadow: 0px 1px 10px -5px $graphite;
   background-color: $white;
   border-radius: 4px;
   padding: 1.5em;
+  z-index: 999;
 }
 .modal-header {
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
+  background-color: $blue;
+  padding: 0.5em;
+  margin-bottom: 1em;
 }
 .modal-body {
   display: flex;
-  flex-direction: column;
-  max-width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 .modal-footer {
   display: flex;
@@ -77,5 +87,8 @@ export default {
   flex-direction: row;
   justify-content: flex-end;
   margin-top: 1em;
+}
+.modal-header-text {
+  font-weight: 400;
 }
 </style>

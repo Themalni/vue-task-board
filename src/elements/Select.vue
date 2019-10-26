@@ -1,16 +1,31 @@
 <template>
-  <label>
-    {{ label }}
-    <select :value="value" @input="emitValue($event.target.value)">
-      <option :value="undefined">{{ defaultOption }}</option>
-      <option v-for="(option, key) in options" :value="key" :key="key">{{ option }}</option>
-    </select>
-  </label>
+  <div class="select-container pb-3">
+    <label>
+      {{ label }}
+      <select
+        :name="name"
+        :value="value"
+        @input="emitValue($event.target.value)"
+        v-validate="rules"
+        :data-vv-as="friendlyName"
+        data-vv-validate-on="blur">
+        <option :value="undefined">{{ defaultOption }}</option>
+        <option v-for="(option, key) in options" :value="key" :key="key">{{ option }}</option>
+      </select>
+    </label>
+    <small
+      v-if="errors.first(name)"
+      class="text-xs error-text edit-error"
+    >
+      {{ errors.first(name) }}
+    </small>
+  </div>
 </template>
 
 <script>
 export default {
   name: "Select",
+  inject: ['$validator'],
   props: {
     id: {
       type: String,
@@ -28,6 +43,17 @@ export default {
     label: {
       type: [String, Boolean],
       required: false
+    },
+    name: {
+      type: String
+    },
+    rules: {
+      type: [String, Object],
+      required: false
+    },
+    friendlyName: {
+      type: String,
+      required: false
     }
   },
   methods: {
@@ -39,6 +65,11 @@ export default {
 </script>
 
 <style lang="scss">
+.select-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
 select {
   display: block;
   width: 100%;
@@ -57,6 +88,14 @@ select {
     background: $white;
     border-color: $grey;
     color: $graphite;
+
+    &.has-error {
+      border-color: $crimson;
+    }
   }
+}
+.edit-error {
+  position: absolute;
+  bottom: 0.5em;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button class="button" :class="[ color ]" @click="$emit('addAction')">
+    <button class="button" :class="[ color ]" @click="$emit('addAction')" :disabled="disabled">
       <slot></slot>
     </button>
   </div>
@@ -12,6 +12,9 @@ export default {
   props: {
     color: {
       type: String
+    },
+    disabled: {
+      type: Boolean
     }
   },
   methods: {
@@ -35,6 +38,10 @@ export default {
     box-shadow: 0px 3px 8px -5px $graphite;
     transition: 0.2s linear;
   }
+
+  &:disabled {
+    pointer-events: none;
+  }
 }
 .button-default {
   background-color: $light-grey;
@@ -43,6 +50,10 @@ export default {
   &:hover {
     background-color: darken($light-grey, 5%);
     transition: 0.2s linear;
+  }
+
+  &:disabled {
+    background-color: lighten($light-grey, 25%);
   }
 }
 .button-primary {
@@ -53,6 +64,10 @@ export default {
     background-color: darken($blue, 5%);
     transition: 0.2s linear;
   }
+
+  &:disabled {
+    background-color: lighten($blue, 25%);
+  }
 }
 .button-success {
   background-color: $olive;
@@ -61,6 +76,10 @@ export default {
   &:hover {
     background-color: darken($olive, 5%);
     transition: 0.2s linear;
+  }
+
+  &:disabled {
+    background-color: lighten($olive, 25%);
   }
 }
 .button-danger {

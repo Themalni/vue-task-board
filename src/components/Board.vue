@@ -7,13 +7,13 @@
     <div class="board-body">
       <slot></slot>
     </div>
-    <Task-Modal v-if="modalIsOpen"></Task-Modal>
+    <New-Task-Modal v-if="editModalIsOpen"></New-Task-Modal>
   </div>
 </template>
 
 <script>
-import Button from "@/elements/Button";
-import TaskModal from "@/components/TaskModal";
+import Button from "@/elements/buttons//Button";
+import NewTaskModal from "@/components/task/NewTaskModal";
 
 import { mapActions, mapGetters } from "vuex";
 
@@ -21,7 +21,7 @@ export default {
   name: "Board",
   components: {
     Button,
-    TaskModal
+    NewTaskModal
   },
   data: () => ({
     id: null
@@ -32,12 +32,12 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["modalIsOpen"])
+    ...mapGetters(["editModalIsOpen"])
   },
   methods: {
-    ...mapActions(["changeModalState"]),
+    ...mapActions(["changeNewTaskModalState"]),
     openModal() {
-      this.$store.dispatch("changeModalState", true);
+      this.$store.dispatch("changeNewTaskModalState", true);
     }
   }
 };
@@ -62,15 +62,5 @@ export default {
   flex-wrap: nowrap;
   flex-direction: row;
   /* justify-content: space-between; */
-}
-textarea {
-  padding: 1em;
-  border: 1px dashed $grey;
-  outline: none;
-  resize: none;
-  font-family: "Noto Sans", sans-serif;
-  font-size: 0.8em;
-  color: $graphite;
-  border-radius: 2px;
 }
 </style>
