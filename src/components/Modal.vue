@@ -54,6 +54,7 @@ export default {
   bottom: 0;
   background-color: rgba(0,0,0, 0.4);
   z-index: 998;
+  overflow: scroll;
 }
 .modal {
   width: 40%;
@@ -66,6 +67,34 @@ export default {
   border-radius: 4px;
   padding: 1.5em;
   z-index: 999;
+
+  &.w-25 {
+    @include device-size(xs, sm) {
+      width: 75%;
+    }
+
+    @include device-size(md, lg) {
+      width: 65%;
+    }
+  }
+
+  @include device-size(xs, sm) {
+    width: 75%;
+    top: 0%;
+    margin: 3em 0;
+    transform: translateX(-50%);
+  }
+
+  @include device-size(md) {
+    width: 65%;
+    top: -1em;
+    margin: 3em 0;
+    transform: translateX(-50%);
+  }
+
+  @include device-size(lg) {
+    width: 55%;
+  }
 }
 .modal-header {
   display: flex;
@@ -75,6 +104,10 @@ export default {
   background-color: $blue;
   padding: 0.5em;
   margin-bottom: 1em;
+
+  @include device-size(xs) {
+    flex-wrap: wrap;
+  }
 }
 .modal-body {
   display: flex;

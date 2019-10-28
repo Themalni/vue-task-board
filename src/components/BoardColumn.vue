@@ -74,6 +74,11 @@ export default {
   border-radius: 4px;
   background-color: $grey;
   box-shadow: 0 1px 5px -3px $graphite;
+
+  @include device-size(xs, sm) {
+    margin-bottom: 1em;
+    width: 100%;
+  }
 }
 .column-header {
   font-size: 1.1em;

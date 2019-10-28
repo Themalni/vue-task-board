@@ -60,6 +60,9 @@ export default {
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
-  /* justify-content: space-between; */
+
+  @include device-size(xs, sm) {
+    flex-wrap: wrap;
+  }
 }
 </style>
