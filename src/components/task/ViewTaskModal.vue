@@ -61,7 +61,7 @@
       <h4>Czy napewno chcesz usunąć to zadanie?</h4>
     </template>
     <template v-slot:footer>
-      <Button color="button-danger" :disabled="!isEditing" @addAction="setChanges(activeTask)">Usuń</Button>
+      <Button color="button-danger" :disabled="!isEditing" @addAction="deleteSelectedTask(activeTask)">Usuń</Button>
       <Button class="ml-2" color="button-default" @addAction="closeModal()">Anuluj</Button>
     </template>
   </Modal>
@@ -89,13 +89,6 @@ export default {
   data: () => ({
     isEditing: false,
     deleteModalIsOpen: false,
-    task: {
-      id: null,
-      categoryId: null,
-      description: null,
-      type: null,
-      status: null
-    },
     taskTypes: {
       feature: "feature",
       bugfix: "bugfix",
@@ -106,7 +99,13 @@ export default {
     ...mapGetters(["activeTask", "editModalIsOpen"]),
   },
   methods: {
-    ...mapActions(["changeViewTaskModalState", "changeNewTaskModalState",  "saveTask", "saveChanges"]),
+    ...mapActions([
+      "changeViewTaskModalState",
+      "changeNewTaskModalState",
+      "saveTask",
+      "saveChanges",
+      "deleteTask"
+    ]),
     closeModal() {
       this.$store.dispatch("changeViewTaskModalState", false);
     },
@@ -120,9 +119,14 @@ export default {
     },
     openDeleteTaskModal() {
       this.deleteModalIsOpen = true
+    },
+    deleteSelectedTask(task) {
+      this.$store.dispatch("deleteTask", task);
+      this.deleteModalIsOpen = false
+      this.$store.dispatch("changeViewTaskModalState", false);
     }
   }
-};
+}
 </script>
 
 <style lang="scss">

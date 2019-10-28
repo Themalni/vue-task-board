@@ -42,7 +42,15 @@ export default new Vuex.Store({
       {
         id: 'c2',
         title: 'W realizacji',
-        tasks: []
+        tasks: [
+          {
+            id: '9ee39780-d400-32b0-03bb-0b232a69b89a',
+            categoryId: 'c2',
+            description: 'Opis zadania #4',
+            type: 'default',
+            status: 'W realizacji'
+          }
+        ]
       },
       {
         id: 'c3',
@@ -55,7 +63,6 @@ export default new Vuex.Store({
     activeTask: null
   },
   getters: {
-    tasks: state => state.tasks,
     categories: state => state.categories,
     editModalIsOpen: state => state.editModalIsOpen,
     viewModalIsOpen: state => state.viewModalIsOpen,
@@ -78,20 +85,33 @@ export default new Vuex.Store({
         .find(task => task.id === id)
     },
     SAVE_CHANGES(state, editedTask) {
-      console.log("editedTask from store:", editedTask)
       const task = state.categories
         .find(category => category.id === 'c1').tasks
         .find(task => task.id === editedTask.id)
       task.description = editedTask.description
       task.type = editedTask.type
+      state.activeTask = null
+    },
+    DELETE_TASK(state, payload) {
+      const category = state.categories.find(category => category.id === payload.categoryId)
+      const taskIndex = category.tasks.findIndex(item => item.id === payload.id)
+      Vue.delete(category.tasks, taskIndex)
+    },
+    MOVE_TASK(state, payload) {
+      const category = state.categories.find(category => category.id === payload.categoryId)
+      const taskIndex = category.tasks.findIndex(item => item.id === payload.id)
+      console.log("Payload from MOVE_TASK: ", payload)
+      Vue.set(category[taskIndex], 'tasks', payload.tasks)
     }
   },
   actions: {
     changeNewTaskModalState(context, payload) { context.commit('CHANGE_EDIT_TASK_MODAL_STATE', payload) },
     changeViewTaskModalState(context, payload) { context.commit('CHANGE_VIEW_TASK_MODAL_STATE', payload) },
     saveTask(context, payload) { context.commit('SAVE_TASK', payload) },
-    setactiveTask(context, payload) { context.commit('SET_ACTIVE_CARD', payload) },
-    saveChanges(context, payload) { context.commit('SAVE_CHANGES', payload) }
+    setActiveTask(context, payload) { context.commit('SET_ACTIVE_CARD', payload) },
+    saveChanges(context, payload) { context.commit('SAVE_CHANGES', payload) },
+    deleteTask(context, payload) { context.commit('DELETE_TASK', payload) },
+    moveTask(context, payload) { context.commit('MOVE_TASK', payload) }
   },
   plugins: [vuexLocalStorage.plugin]
 })

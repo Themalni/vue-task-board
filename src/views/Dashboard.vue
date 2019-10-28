@@ -1,9 +1,9 @@
 <template>
   <Board :header="boardHeader">
-    <Board-Column v-for="category in categories" :key="category.id" :title="category.title">
-      <draggable v-model="category.tasks">
+    <Board-Column v-for="category in categories" :key="category.id" :title="category.title" :category="category">
+      <draggable v-model="items">
         <Card
-          v-for="task in category.tasks"
+          v-for="task in items[0].tasks"
           :key="task.id"
           :description="task.description"
           @openCard="openTask(task.id)"
@@ -39,14 +39,25 @@ export default {
     boardHeader: "Tablica"
   }),
   computed: {
-    ...mapGetters(["categories", "activeTaskId", "viewModalIsOpen"])
+    ...mapGetters(["categories", "activeTaskId", "viewModalIsOpen"]),
+    items: {
+      get() {
+        return this.categories
+      },
+      set(value) {
+        this.$store.dispatch("moveTask", value);
+      }
+    }
   },
   methods: {
-    ...mapActions(["changeViewTaskModalState"]),
+    ...mapActions(["changeViewTaskModalState", "moveTask"]),
     openTask(id) {
       this.$store.dispatch("changeViewTaskModalState", true);
-      this.$store.dispatch("setactiveTask", id);
+      this.$store.dispatch("setActiveTask", id);
     }
+  },
+  mounted() {
+    console.log("Tasks:", this.categories.find(item => item.tasks.length > 0).tasks.filter(item => item.categoryId === 'c1'))
   }
-};
+}
 </script>
