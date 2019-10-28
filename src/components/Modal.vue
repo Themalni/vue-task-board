@@ -20,7 +20,7 @@
 <script>
 
 export default {
-  name: "Modal",
+  name: 'Modal',
   props: {
     title: {
       type: String
@@ -34,7 +34,7 @@ export default {
       default: false
     }
   }
-};
+}
 </script>
 
 <style lang="scss">

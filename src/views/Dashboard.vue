@@ -5,21 +5,21 @@
 </template>
 
 <script>
-import Board from "@/components/Board";
-import BoardColumn from "@/components/BoardColumn";
-import { mapGetters } from "vuex";
+import Board from '@/components/Board'
+import BoardColumn from '@/components/BoardColumn'
+import { mapGetters } from 'vuex'
 
 export default {
-  name: "Dashboard",
+  name: 'Dashboard',
   components: {
     Board,
     BoardColumn
   },
   data: () => ({
-    boardHeader: "Tablica"
+    boardHeader: 'Tablica'
   }),
   computed: {
-    ...mapGetters(["categories"])
+    ...mapGetters(['categories'])
   }
 }
 </script>

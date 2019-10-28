@@ -18,14 +18,14 @@
 </template>
 
 <script>
-import draggable from "vuedraggable";
-import Card from "@/components/Card";
-import Tag from "@/elements/Tag";
-import ViewTaskModal from "@/components/task/ViewTaskModal";
-import { mapGetters, mapActions } from "vuex";
+import draggable from 'vuedraggable'
+import Card from '@/components/Card'
+import Tag from '@/elements/Tag'
+import ViewTaskModal from '@/components/task/ViewTaskModal'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  name: "BoardColumn",
+  name: 'BoardColumn',
   components: {
     draggable,
     Card,
@@ -38,29 +38,29 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["viewModalIsOpen", "activeTask"]),
+    ...mapGetters(['viewModalIsOpen', 'activeTask']),
     items: {
-      get() {
+      get () {
         return this.category.tasks
       },
-      set(value) {
+      set (value) {
         const payload = {
           id: this.category.id,
           title: this.category.title,
           tasks: value
         }
-        this.$store.dispatch("moveTask", payload);
+        this.$store.dispatch('moveTask', payload)
       }
     }
   },
   methods: {
-    ...mapActions(["changeViewTaskModalState", "setActiveCard", "moveTask"]),
-    openTask(task) {
-      this.$store.dispatch("changeViewTaskModalState", true);
-      this.$store.dispatch("setActiveCard", task);
+    ...mapActions(['changeViewTaskModalState', 'setActiveCard', 'moveTask']),
+    openTask (task) {
+      this.$store.dispatch('changeViewTaskModalState', true)
+      this.$store.dispatch('setActiveCard', task)
     }
   }
-};
+}
 </script>
 
 <style lang="scss">

@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: "Select",
+  name: 'Select',
   inject: ['$validator'],
   props: {
     id: {
@@ -57,11 +57,11 @@ export default {
     }
   },
   methods: {
-    emitValue(inputValue) {
-      this.$emit("input", inputValue);
+    emitValue (inputValue) {
+      this.$emit('input', inputValue)
     }
   }
-};
+}
 </script>
 
 <style lang="scss">
