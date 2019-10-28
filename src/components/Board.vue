@@ -12,13 +12,12 @@
 </template>
 
 <script>
-import Button from "@/elements/buttons//Button";
-import NewTaskModal from "@/components/task/NewTaskModal";
-
-import { mapActions, mapGetters } from "vuex";
+import Button from '@/elements/buttons//Button'
+import NewTaskModal from '@/components/task/NewTaskModal'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  name: "Board",
+  name: 'Board',
   components: {
     Button,
     NewTaskModal
@@ -32,15 +31,15 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["editModalIsOpen"])
+    ...mapGetters(['editModalIsOpen'])
   },
   methods: {
-    ...mapActions(["changeNewTaskModalState"]),
-    openModal() {
-      this.$store.dispatch("changeNewTaskModalState", true);
+    ...mapActions(['changeNewTaskModalState']),
+    openModal () {
+      this.$store.dispatch('changeNewTaskModalState', true)
     }
   }
-};
+}
 </script>
 
 <style lang="scss">

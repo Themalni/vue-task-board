@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "Tag",
+  name: 'Tag',
   props: {
     color: {
       type: String
@@ -15,7 +15,7 @@ export default {
       type: String
     }
   }
-};
+}
 </script>
 
 <style lang="scss">

@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: "Button",
+  name: 'Button',
   props: {
     color: {
       type: String
@@ -18,11 +18,11 @@ export default {
     }
   },
   methods: {
-    addAction() {
-      this.$emit("addAction");
+    addAction () {
+      this.$emit('addAction')
     }
   }
-};
+}
 </script>
 
 <style lang="scss">

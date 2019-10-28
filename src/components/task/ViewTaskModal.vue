@@ -69,20 +69,18 @@
 </template>
 
 <script>
-import Modal from "@/components/Modal";
-import Button from "@/elements/buttons/Button";
-import NewTaskModal from "@/components/task/NewTaskModal";
-import Select from "@/elements/Select";
-import Tag from "@/elements/Tag";
-import { mapActions, mapGetters } from "vuex";
+import Modal from '@/components/Modal'
+import Button from '@/elements/buttons/Button'
+import Select from '@/elements/Select'
+import Tag from '@/elements/Tag'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  name: "ViewTaskModal",
-  inject: ["$validator"],
+  name: 'ViewTaskModal',
+  inject: ['$validator'],
   components: {
     Modal,
     Button,
-    NewTaskModal,
     Select,
     Tag
   },
@@ -90,40 +88,40 @@ export default {
     isEditing: false,
     deleteModalIsOpen: false,
     taskTypes: {
-      feature: "feature",
-      bugfix: "bugfix",
-      default: "default"
-    },
+      feature: 'feature',
+      bugfix: 'bugfix',
+      default: 'default'
+    }
   }),
   computed: {
-    ...mapGetters(["activeTask", "editModalIsOpen"]),
+    ...mapGetters(['activeTask', 'editModalIsOpen'])
   },
   methods: {
     ...mapActions([
-      "changeViewTaskModalState",
-      "changeNewTaskModalState",
-      "saveTask",
-      "saveChanges",
-      "deleteTask"
+      'changeViewTaskModalState',
+      'changeNewTaskModalState',
+      'saveTask',
+      'saveChanges',
+      'deleteTask'
     ]),
-    closeModal() {
-      this.$store.dispatch("changeViewTaskModalState", false);
+    closeModal () {
+      this.$store.dispatch('changeViewTaskModalState', false)
     },
-    setChanges(taskToSave) {
-      this.$store.dispatch("saveChanges", taskToSave);
-      this.$store.dispatch("changeViewTaskModalState", false);
+    setChanges (taskToSave) {
+      this.$store.dispatch('saveChanges', taskToSave)
+      this.$store.dispatch('changeViewTaskModalState', false)
     },
-    openNewTaskModal() {
-      this.$store.dispatch("changeViewTaskModalState", false);
-      this.$store.dispatch("changeNewTaskModalState", true);
+    openNewTaskModal () {
+      this.$store.dispatch('changeViewTaskModalState', false)
+      this.$store.dispatch('changeNewTaskModalState', true)
     },
-    openDeleteTaskModal() {
+    openDeleteTaskModal () {
       this.deleteModalIsOpen = true
     },
-    deleteSelectedTask(task) {
-      this.$store.dispatch("deleteTask", task);
+    deleteSelectedTask (task) {
+      this.$store.dispatch('deleteTask', task)
       this.deleteModalIsOpen = false
-      this.$store.dispatch("changeViewTaskModalState", false);
+      this.$store.dispatch('changeViewTaskModalState', false)
     }
   }
 }

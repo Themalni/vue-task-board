@@ -41,14 +41,14 @@
 </template>
 
 <script>
-import Modal from "@/components/Modal";
-import Button from "@/elements/buttons/Button";
-import Select from "@/elements/Select";
-import { mapActions, mapGetters } from "vuex";
+import Modal from '@/components/Modal'
+import Button from '@/elements/buttons/Button'
+import Select from '@/elements/Select'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  name: "NewTaskModal",
-  inject: ["$validator"],
+  name: 'NewTaskModal',
+  inject: ['$validator'],
   components: {
     Modal,
     Button,
@@ -57,42 +57,42 @@ export default {
   data: () => ({
     task: {
       id: null,
-      categoryId: "c1",
+      categoryId: 'c1',
       description: null,
       type: null,
       status: 'Oczekujące'
     },
     taskTypes: {
-      feature: "feature",
-      bugfix: "bugfix",
-      default: "default"
+      feature: 'feature',
+      bugfix: 'bugfix',
+      default: 'default'
     },
     isEditing: false,
     isValid: true
   }),
   computed: {
-    ...mapGetters(["taskId"])
+    ...mapGetters(['taskId'])
   },
   methods: {
-    ...mapActions(["changeNewTaskModalState", "saveTask"]),
-    saveChanges() {
+    ...mapActions(['changeNewTaskModalState', 'saveTask']),
+    saveChanges () {
       this.$validator.validate()
         .then((valid) => {
           if (valid) {
-            this.$store.dispatch("saveTask", this.task);
-            this.$store.dispatch("changeNewTaskModalState", false);
-            this.isEditing = false;
+            this.$store.dispatch('saveTask', this.task)
+            this.$store.dispatch('changeNewTaskModalState', false)
+            this.isEditing = false
           }
         })
         .catch(() => {
-          alert(this.errors.all());
-        });
+          alert(this.errors.all())
+        })
     },
-    closeModal() {
-      this.$store.dispatch("changeNewTaskModalState", false);
+    closeModal () {
+      this.$store.dispatch('changeNewTaskModalState', false)
     }
   }
-};
+}
 </script>
 
 <style lang="scss">

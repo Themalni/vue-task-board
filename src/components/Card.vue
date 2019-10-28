@@ -9,23 +9,23 @@
 
 <script>
 export default {
-  name: "Card",
+  name: 'Card',
   props: {
     description: {
       type: String
     }
   },
   methods: {
-    openCard() {
-      this.$emit("openCard");
+    openCard () {
+      this.$emit('openCard')
     },
-    truncateString(text, limit) {
-      const shortened = text.indexOf(" ", limit);
-      if (shortened == -1) return text;
-      return text.substring(0, shortened) + "...";
+    truncateString (text, limit) {
+      const shortened = text.indexOf(' ', limit)
+      if (shortened === -1) return text
+      return text.substring(0, shortened) + '...'
     }
   }
-};
+}
 </script>
 
 <style lang="scss">

@@ -5,12 +5,12 @@
 </template>
 
 <script>
-import Dashboard from "@/views/Dashboard";
+import Dashboard from '@/views/Dashboard'
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     Dashboard
   }
-};
+}
 </script>
