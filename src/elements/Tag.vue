@@ -8,9 +8,6 @@
 export default {
   name: 'Tag',
   props: {
-    color: {
-      type: String
-    },
     type: {
       type: String
     }
