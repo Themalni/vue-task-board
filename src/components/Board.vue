@@ -1,20 +1,43 @@
 <template>
   <div class="board">
     <div class="board-header">
-      <h1>{{ header }}</h1>
+      <h1 class="board-header-text">{{ header }}</h1>
+      <Button class="mb-2" color="button-success" @addAction="openModal()">Dodaj zadanie</Button>
     </div>
     <div class="board-body">
       <slot></slot>
     </div>
+    <New-Task-Modal v-if="editModalIsOpen"></New-Task-Modal>
   </div>
 </template>
 
 <script>
+import Button from "@/elements/buttons//Button";
+import NewTaskModal from "@/components/task/NewTaskModal";
+
+import { mapActions, mapGetters } from "vuex";
+
 export default {
   name: "Board",
+  components: {
+    Button,
+    NewTaskModal
+  },
+  data: () => ({
+    id: null
+  }),
   props: {
     header: {
       type: String
+    }
+  },
+  computed: {
+    ...mapGetters(["editModalIsOpen"])
+  },
+  methods: {
+    ...mapActions(["changeNewTaskModalState"]),
+    openModal() {
+      this.$store.dispatch("changeNewTaskModalState", true);
     }
   }
 };
@@ -25,6 +48,12 @@ export default {
   padding: 1em 2em;
 }
 .board-header {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.board-heared-text {
   font-size: 1.3em;
   color: $graphite;
 }
@@ -32,6 +61,6 @@ export default {
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 </style>
