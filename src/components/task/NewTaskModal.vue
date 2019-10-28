@@ -78,13 +78,11 @@ export default {
     saveChanges() {
       this.$validator.validate()
         .then((valid) => {
-          console.log("result: ", valid)
           if (valid) {
             this.$store.dispatch("saveTask", this.task);
             this.$store.dispatch("changeNewTaskModalState", false);
             this.isEditing = false;
           }
-
         })
         .catch(() => {
           alert(this.errors.all());

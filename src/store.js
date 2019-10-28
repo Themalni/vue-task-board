@@ -42,15 +42,7 @@ export default new Vuex.Store({
       {
         id: 'c2',
         title: 'W realizacji',
-        tasks: [
-          {
-            id: '9ee39780-d400-32b0-03bb-0b232a69b89a',
-            categoryId: 'c2',
-            description: 'Opis zadania #4',
-            type: 'default',
-            status: 'W realizacji'
-          }
-        ]
+        tasks: []
       },
       {
         id: 'c3',
@@ -79,10 +71,8 @@ export default new Vuex.Store({
       task.id = uuidv1()
       state.categories.filter(category => category.id === 'c1').map(item => item.tasks.push(task))
     },
-    SET_ACTIVE_CARD(state, id) {
-      state.activeTask = state.categories
-        .find(category => category.id === 'c1').tasks
-        .find(task => task.id === id)
+    SET_ACTIVE_CARD(state, payload) {
+      state.activeTask = payload
     },
     SAVE_CHANGES(state, editedTask) {
       const task = state.categories
@@ -98,17 +88,19 @@ export default new Vuex.Store({
       Vue.delete(category.tasks, taskIndex)
     },
     MOVE_TASK(state, payload) {
-      const category = state.categories.find(category => category.id === payload.categoryId)
-      const taskIndex = category.tasks.findIndex(item => item.id === payload.id)
-      console.log("Payload from MOVE_TASK: ", payload)
-      Vue.set(category[taskIndex], 'tasks', payload.tasks)
+      const category = state.categories.find(item => item.id === payload.id)
+      payload.tasks.map(item => {
+        item.categoryId = payload.id
+        item.status = payload.title
+      })
+      Vue.set(category, 'tasks', payload.tasks)
     }
   },
   actions: {
     changeNewTaskModalState(context, payload) { context.commit('CHANGE_EDIT_TASK_MODAL_STATE', payload) },
     changeViewTaskModalState(context, payload) { context.commit('CHANGE_VIEW_TASK_MODAL_STATE', payload) },
     saveTask(context, payload) { context.commit('SAVE_TASK', payload) },
-    setActiveTask(context, payload) { context.commit('SET_ACTIVE_CARD', payload) },
+    setActiveCard(context, payload) { context.commit('SET_ACTIVE_CARD', payload) },
     saveChanges(context, payload) { context.commit('SAVE_CHANGES', payload) },
     deleteTask(context, payload) { context.commit('DELETE_TASK', payload) },
     moveTask(context, payload) { context.commit('MOVE_TASK', payload) }

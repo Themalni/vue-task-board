@@ -1,18 +1,63 @@
 <template>
   <div class="column">
-    <div class="column-header">{{ title }}</div>
+    <div class="column-header">{{ category.title }}</div>
     <div class="column-body">
-      <slot></slot>
+      <draggable v-model="items" group="task-items" class="draggable-container">
+        <Card
+          v-for="task in items"
+          :key="task.id"
+          :description="task.description"
+          @openCard="openTask(task)"
+        >
+          <Tag class="mt-2" :type="task.type"/>
+        </Card>
+      </draggable>
+      <View-Task-Modal v-if="viewModalIsOpen"></View-Task-Modal>
     </div>
   </div>
 </template>
 
 <script>
+import draggable from "vuedraggable";
+import Card from "@/components/Card";
+import Tag from "@/elements/Tag";
+import ViewTaskModal from "@/components/task/ViewTaskModal";
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   name: "BoardColumn",
+  components: {
+    draggable,
+    Card,
+    Tag,
+    ViewTaskModal
+  },
   props: {
-    title: {
-      type: String
+    category: {
+      type: Object
+    }
+  },
+  computed: {
+    ...mapGetters(["viewModalIsOpen", "activeTask"]),
+    items: {
+      get() {
+        return this.category.tasks
+      },
+      set(value) {
+        const payload = {
+          id: this.category.id,
+          title: this.category.title,
+          tasks: value
+        }
+        this.$store.dispatch("moveTask", payload);
+      }
+    }
+  },
+  methods: {
+    ...mapActions(["changeViewTaskModalState", "setActiveCard", "moveTask"]),
+    openTask(task) {
+      this.$store.dispatch("changeViewTaskModalState", true);
+      this.$store.dispatch("setActiveCard", task);
     }
   }
 };
@@ -33,5 +78,11 @@ export default {
 .column-header {
   font-size: 1.1em;
   padding-bottom: 1em;
+}
+.column-body {
+  min-height: 110px;
+}
+.draggable-container {
+  min-height: 100%;
 }
 </style>
