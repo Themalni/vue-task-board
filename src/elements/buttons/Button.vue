@@ -42,6 +42,10 @@ export default {
   &:disabled {
     pointer-events: none;
   }
+
+  @include device-size(xs, sm) {
+    padding: 0.6em 1em;
+  }
 }
 .button-default {
   background-color: $light-grey;
