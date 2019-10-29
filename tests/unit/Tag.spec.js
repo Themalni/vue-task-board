@@ -13,7 +13,7 @@ describe('Button', () => {
   it('does contain `tag` element', () => {
     expect(tag.classes('tag')).toBe(true)
   })
-  it('renters correctly', () => {
+  it('renders correctly', () => {
     expect(wrapper.html()).toMatchSnapshot()
   })
   it('does add class `tag-feature` when value is provided to prop `type`', () => {

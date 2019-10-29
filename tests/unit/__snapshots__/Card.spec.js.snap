@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Card renters correctly 1`] = `
+exports[`Card renders correctly 1`] = `
 <div class="card">
   <div class="card-body"></div>
   <div class="card-footer"></div>

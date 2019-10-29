@@ -9,11 +9,15 @@ beforeEach(() => {
   button = wrapper.find('button')
 })
 
+afterEach(() => {
+  wrapper.destroy()
+})
+
 describe('Button', () => {
   it('does contain `button` element', () => {
     expect(button.is('button')).toBe(true)
   })
-  it('renters correctly', () => {
+  it('renders correctly', () => {
     expect(wrapper.html()).toMatchSnapshot()
   })
   it('does not set button as disabled by default', () => {
@@ -34,14 +38,7 @@ describe('Button', () => {
     expect(button.classes('button-primary')).toBeTruthy()
   })
   it('emits event `addAction`', () => {
-    wrapper.vm.$emit('addAction')
-
-    const emitted = wrapper.emitted()
-
-    expect(emitted.addAction.length).toBe(1)
-
-    button.trigger('click')
-
-    expect(emitted.addAction.length).toBe(2)
+    wrapper.vm.addAction()
+    expect(wrapper.emitted().addAction).toBeTruthy()
   })
 })

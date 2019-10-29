@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal renders correctly 1`] = `
+<div class="overlay" name="fade">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 class="modal-header-text text-white"></h3>
+      <!---->
+    </div>
+    <div class="modal-body"></div>
+    <div class="modal-footer"></div>
+  </div>
+</div>
+`;

@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewTaskModal renders correctly 1`] = `
+<div class="overlay" name="fade">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 class="modal-header-text text-white">Stwórz nowe zadanie</h3>
+      <h3 class="modal-header-text text-white ml-1">(Oczekujące)</h3>
+    </div>
+    <div class="modal-body">
+      <div class="container pb-3">
+        <h4>Opis zadania:</h4> <textarea name="description" type="textarea" label="Description" data-vv-as="Opis zadania" placeholder="Dodaj opis zadania..." rows="6" class="mt-2" aria-required="true" aria-invalid="false"></textarea>
+        <!---->
+      </div>
+      <h4 class="w-100">Rodzaj zadania:</h4>
+      <div class="select-container pb-3"><label>
+
+          <select name="taskTypesSelect" data-vv-as="Rodzaj zadania" data-vv-validate-on="blur" aria-required="true" aria-invalid="false">
+            <option value="">Wybierz rodzaj zadania</option>
+            <option value="feature">feature</option>
+            <option value="bugfix">bugfix</option>
+            <option value="default">default</option>
+          </select></label>
+        <!---->
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div><button disabled="disabled" class="button button-primary">Zachowaj</button></div>
+      <div class="ml-2"><button class="button button-default">Anuluj</button></div>
+    </div>
+  </div>
+</div>
+`;
