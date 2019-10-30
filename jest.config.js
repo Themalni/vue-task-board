@@ -13,6 +13,14 @@ module.exports = {
   transformIgnorePatterns: [
     '/node_modules/'
   ],
+  collectCoverage: true,
+  collectCoverageFrom: [
+    'src/**/*.{js,vue}',
+    '!src/App.vue',
+    '!src/main.js',
+    '!src/store.js'
+  ],
+  forceCoverageMatch: ['**src/components**'],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1'
   },

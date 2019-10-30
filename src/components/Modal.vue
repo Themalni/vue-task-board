@@ -21,6 +21,7 @@
 
 export default {
   name: 'Modal',
+  data: () => ({}),
   props: {
     title: {
       type: String
@@ -54,7 +55,10 @@ export default {
   bottom: 0;
   background-color: rgba(0,0,0, 0.4);
   z-index: 998;
-  overflow: scroll;
+
+  @include device-size(xs, sm) {
+    overflow: scroll;
+  }
 }
 .modal {
   width: 40%;

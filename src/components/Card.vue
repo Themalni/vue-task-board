@@ -1,5 +1,5 @@
 <template>
-  <div class="card" @click="openCard()">
+  <div class="card" @click="$emit('openCard')">
     <div class="card-body">{{ truncateString(description, 65) }}</div>
     <div class="card-footer">
       <slot></slot>

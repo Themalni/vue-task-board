@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dashboard renders correctly 1`] = `
+<div class="board">
+  <div class="board-header">
+    <h1 class="board-header-text">Tablica</h1>
+    <div class="mb-2"><button class="button button-success">Dodaj zadanie</button></div>
+  </div>
+  <div class="board-body"></div>
+  <!---->
+</div>
+`;

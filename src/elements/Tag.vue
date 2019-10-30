@@ -7,10 +7,8 @@
 <script>
 export default {
   name: 'Tag',
+  data:() => ({}),
   props: {
-    color: {
-      type: String
-    },
     type: {
       type: String
     }

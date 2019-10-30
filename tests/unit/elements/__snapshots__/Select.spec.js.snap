@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select renders correctly 1`] = `
+<div class="select-container pb-3"><label>
+    false
+    <select name="select-name" data-vv-validate-on="blur" aria-required="true" aria-invalid="false">
+      <option value=""></option>
+    </select></label>
+  <!---->
+</div>
+`;

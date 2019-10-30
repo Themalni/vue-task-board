@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import Button from '@/elements/buttons//Button'
+import Button from '@/elements/Button'
 import NewTaskModal from '@/components/task/NewTaskModal'
 import { mapActions, mapGetters } from 'vuex'
 
