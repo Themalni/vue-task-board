@@ -1,4 +1,4 @@
-# Task management board
+# Task management app
 
 ## Made with Vue + Vuex
 
