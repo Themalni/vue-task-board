@@ -77,7 +77,7 @@ export default {
     ...mapActions(['changeNewTaskModalState', 'saveTask']),
     saveChanges () {
       this.$validator.validate()
-        .then((valid) => {
+        .then(valid => {
           if (valid) {
             this.$store.dispatch('saveTask', this.task)
             this.$store.dispatch('changeNewTaskModalState', false)
@@ -85,7 +85,8 @@ export default {
           }
         })
         .catch(() => {
-          alert(this.errors.all())
+          console.log(this.errors.all())
+          return false
         })
     },
     closeModal () {

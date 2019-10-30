@@ -7,24 +7,6 @@ import NewTaskModal from '@/components/task/NewTaskModal'
 const localVue = createLocalVue()
 localVue.use(Vuex)
 localVue.use(VeeValidate)
-// const validator = new VeeValidate.Validator()
-
-const categoryTasks = [
-  {
-    id: '2e037380-d748-12e6-99be-5b4b2b69f7e9',
-    categoryId: 'c1',
-    description: 'Opis zadania #1',
-    type: 'feature',
-    status: 'Oczekujące'
-  },
-  {
-    id: '2e037380-d748-12e6-99be-5b4b2b69f7e9',
-    categoryId: 'c1',
-    description: 'Opis zadania #1',
-    type: 'feature',
-    status: 'Oczekujące'
-  }
-]
 
 describe('NewTaskModal', () => {
   let wrapper
@@ -32,6 +14,8 @@ describe('NewTaskModal', () => {
   let actions
   let state
   let getters
+
+  let mockError
 
   beforeEach(() => {
     state = {
@@ -118,19 +102,29 @@ describe('NewTaskModal', () => {
     wrapper.vm.closeModal()
     expect(actions.changeNewTaskModalState.mock.calls).toHaveLength(1)
   })
-  it('calls `saveChanges` when button is clicked', async () => {
-    wrapper.vm.saveChanges()
-
+  it('calls `saveChanges` and validated inputs when button is clicked', async () => {
     wrapper.vm.$validator.validate = jest.fn(() => Promise.resolve(true))
 
-    await flushPromises()
+    wrapper.vm.saveChanges()
 
-    // expect(wrapper.vm.errors.has('description')).toBe(false)
+    await flushPromises()
 
     expect(wrapper.vm.$validator.validate).toHaveBeenCalled()
 
     expect(actions.saveTask.mock.calls).toHaveLength(1)
     expect(actions.changeNewTaskModalState.mock.calls).toHaveLength(1)
-    expect(wrapper.vm.this.isEditing).toBe(false)
+    expect(wrapper.vm.isEditing).toBe(false)
+  })
+  it('catches an error during validation', async () => {
+    wrapper.vm.$validator.validate = jest.fn(() => Promise.reject(mockError))
+
+    wrapper.vm.saveChanges()
+
+    await flushPromises()
+
+    expect(wrapper.vm.$validator.validate).toHaveBeenCalled()
+
+    expect(actions.saveTask.mock.calls).toHaveLength(0)
+    expect(actions.changeNewTaskModalState.mock.calls).toHaveLength(0)
   })
 })
