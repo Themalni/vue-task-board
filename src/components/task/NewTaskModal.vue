@@ -84,7 +84,6 @@ export default {
         .catch(() => {
           console.log(this.errors.all())
         })
-      console.log(this.errors.all())
     },
     closeModal () {
       this.$store.dispatch('changeNewTaskModalState', false)

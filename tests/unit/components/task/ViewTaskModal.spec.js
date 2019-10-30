@@ -1,7 +1,7 @@
 import { mount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import VeeValidate from 'vee-validate'
-import mockState from '../utils/mockState'
+import mockState from '../../utils/mockState'
 import ViewTaskModal from '@/components/task/ViewTaskModal'
 
 const localVue = createLocalVue()

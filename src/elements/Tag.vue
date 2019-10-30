@@ -7,6 +7,7 @@
 <script>
 export default {
   name: 'Tag',
+  data:() => ({}),
   props: {
     type: {
       type: String

@@ -1,6 +1,7 @@
 import { mount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import draggable from 'vuedraggable'
+import mockState from '../utils/mockState'
 import BoardColumn from '@/components/BoardColumn'
 
 const localVue = createLocalVue()
@@ -32,42 +33,7 @@ describe('BoardColumn', () => {
   let getters
 
   beforeEach(() => {
-    state = {
-      activeTask: null,
-      editModalIsOpen: false,
-      categories: [
-        {
-          id: 'c1',
-          title: 'Oczekujące',
-          tasks: [
-            {
-              id: '2e037380-d748-12e6-99be-5b4b2b69f7e9',
-              categoryId: 'c1',
-              description: 'Opis zadania #1',
-              type: 'feature',
-              status: 'Oczekujące'
-            },
-            {
-              id: '1de39732-f109-11e9-98be-1b5b2a69b7e9',
-              categoryId: 'c1',
-              description: 'Opis zadania #2',
-              type: 'bugfix',
-              status: 'Oczekujące'
-            }
-          ]
-        },
-        {
-          id: 'c2',
-          title: 'W realizacji',
-          tasks: []
-        },
-        {
-          id: 'c3',
-          title: 'Wykonane',
-          tasks: []
-        }
-      ]
-    }
+    state = mockState.state
     getters = {
       viewModalIsOpen: () => false,
       activeTask: () => {}
@@ -108,16 +74,5 @@ describe('BoardColumn', () => {
     wrapper.vm.openTask()
     expect(actions.changeViewTaskModalState.mock.calls).toHaveLength(1)
     expect(actions.setActiveCard.mock.calls).toHaveLength(1)
-  })
-  it('dispatch `moveTask` action when items computed property is updated', () => {
-    wrapper.vm.items = categoryTasks
-    // BoardColumn.computed.items.set.call(categoryTasks)
-    // console.log('Items: ', BoardColumn.computed.items)
-    // expect(actions.moveTask.mock.calls).toHaveLength(1)
-    // expect(mockStore.dispatch).toHaveBeenCalledWith('moveTask', {
-    //   id: 'c1',
-    //   title: 'Oczekujące',
-    //   tasks: categoryTasks
-    // })
   })
 })

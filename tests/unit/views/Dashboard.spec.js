@@ -15,7 +15,8 @@ describe('Dashboard', () => {
   beforeEach(() => {
     state = mockState
     getters = {
-      categories: () => state.categories
+      categories: () => state.categories,
+      editModalIsOpen: () => false
     }
     store = new Vuex.Store({
       state,

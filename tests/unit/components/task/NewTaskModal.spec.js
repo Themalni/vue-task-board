@@ -2,7 +2,7 @@ import { mount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import VeeValidate from 'vee-validate'
 import flushPromises from 'flush-promises'
-import mockState from '../utils/mockState'
+import mockState from '../../utils/mockState'
 import NewTaskModal from '@/components/task/NewTaskModal'
 
 const localVue = createLocalVue()

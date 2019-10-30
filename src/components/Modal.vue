@@ -21,6 +21,7 @@
 
 export default {
   name: 'Modal',
+  data: () => ({}),
   props: {
     title: {
       type: String

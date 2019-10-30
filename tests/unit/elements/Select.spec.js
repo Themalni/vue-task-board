@@ -56,6 +56,10 @@ describe('Select', () => {
     wrapper.destroy()
   })
 
+  it('renders correctly', () => {
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+
   it('does contain select element', () => {
     expect(select.is('select')).toBe(true)
   })

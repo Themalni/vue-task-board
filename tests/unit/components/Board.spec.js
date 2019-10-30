@@ -1,5 +1,6 @@
 import { mount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
+import mockState from '../utils/mockState'
 import Board from '@/components/Board'
 
 const localVue = createLocalVue()
@@ -13,35 +14,7 @@ describe('Board', () => {
   let getters
 
   beforeEach(() => {
-    state = {
-      activeTask: null,
-      editModalIsOpen: false,
-      categories: [
-        {
-          id: 'c1',
-          title: 'Oczekujące',
-          tasks: [
-            {
-              id: '2e037380-d748-12e6-99be-5b4b2b69f7e9',
-              categoryId: 'c1',
-              description: 'Opis zadania #1',
-              type: 'feature',
-              status: 'Oczekujące'
-            }
-          ]
-        },
-        {
-          id: 'c2',
-          title: 'W realizacji',
-          tasks: []
-        },
-        {
-          id: 'c3',
-          title: 'Wykonane',
-          tasks: []
-        }
-      ]
-    }
+    state = mockState.state
     getters = {
       editModalIsOpen: () => false
     }

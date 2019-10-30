@@ -14,11 +14,11 @@ afterEach(() => {
 })
 
 describe('Button', () => {
-  it('does contain `button` element', () => {
-    expect(button.is('button')).toBe(true)
-  })
   it('renders correctly', () => {
     expect(wrapper.html()).toMatchSnapshot()
+  })
+  it('does contain `button` element', () => {
+    expect(button.is('button')).toBe(true)
   })
   it('does not set button as disabled by default', () => {
     expect(button.attributes('disabled')).not.toBe('disabled')
