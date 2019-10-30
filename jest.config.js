@@ -15,9 +15,12 @@ module.exports = {
   ],
   collectCoverage: true,
   collectCoverageFrom: [
+    // 'src/**/*{js, vue}',
     'src/**/*.{js,vue}',
+    '!src/App.vue',
     '!src/main.js'
   ],
+  forceCoverageMatch: ['src/components/**'],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1'
   },

@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import Button from '@/elements/buttons/Button'
+import Button from '@/elements/Button'
 
 let wrapper
 let button

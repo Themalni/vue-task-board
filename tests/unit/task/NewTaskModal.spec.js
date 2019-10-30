@@ -2,6 +2,7 @@ import { mount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import VeeValidate from 'vee-validate'
 import flushPromises from 'flush-promises'
+import mockState from '../utils/mockState'
 import NewTaskModal from '@/components/task/NewTaskModal'
 
 const localVue = createLocalVue()
@@ -15,48 +16,10 @@ describe('NewTaskModal', () => {
   let state
   let getters
 
-  let mockError
+  let mockError = 'This field is required'
 
   beforeEach(() => {
-    state = {
-      activeTask: null,
-      editModalIsOpen: false,
-      categories: [
-        {
-          id: 'c1',
-          title: 'Oczekujące',
-          tasks: [
-            {
-              id: '2e037380-d748-12e6-99be-5b4b2b69f7e9',
-              categoryId: 'c1',
-              description: 'Opis zadania #1',
-              type: 'feature',
-              status: 'Oczekujące'
-            },
-            {
-              id: '1de39732-f109-11e9-98be-1b5b2a69b7e9',
-              categoryId: 'c1',
-              description: 'Opis zadania #2',
-              type: 'bugfix',
-              status: 'Oczekujące'
-            }
-          ]
-        },
-        {
-          id: 'c2',
-          title: 'W realizacji',
-          tasks: []
-        },
-        {
-          id: 'c3',
-          title: 'Wykonane',
-          tasks: []
-        }
-      ]
-    }
-    getters = {
-      taskId: () => '2e037380-d748-12e6-99be-5b4b2b69f7e9'
-    }
+    state = mockState
     actions = {
       changeNewTaskModalState: jest.fn(),
       saveTask: jest.fn()
@@ -87,7 +50,6 @@ describe('NewTaskModal', () => {
       store,
       localVue,
       sync: false
-      // stabs: {}
     })
   })
 
@@ -116,6 +78,7 @@ describe('NewTaskModal', () => {
     expect(wrapper.vm.isEditing).toBe(false)
   })
   it('catches an error during validation', async () => {
+    wrapper.vm.editing = true
     wrapper.vm.$validator.validate = jest.fn(() => Promise.reject(mockError))
 
     wrapper.vm.saveChanges()
@@ -123,8 +86,6 @@ describe('NewTaskModal', () => {
     await flushPromises()
 
     expect(wrapper.vm.$validator.validate).toHaveBeenCalled()
-
-    expect(actions.saveTask.mock.calls).toHaveLength(0)
-    expect(actions.changeNewTaskModalState.mock.calls).toHaveLength(0)
+    expect(mockError).toBe('This field is required')
   })
 })

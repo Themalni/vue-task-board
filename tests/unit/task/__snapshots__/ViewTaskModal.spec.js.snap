@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ViewTaskModal renders correctly 1`] = `
+<div>
+  <div class="overlay" name="fade">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-header-text text-white">Zadanie</h3>
+        <h3 class="modal-header-text text-white ml-1">(Oczekujące)</h3>
+      </div>
+      <div class="modal-body">
+        <h4 class="mb-1">Opis zadania:</h4>
+        <div class="card-grey task-description">
+          <p class="text-md m-0 p-1">Opis zadania #1</p>
+        </div>
+        <h4 class="mt-2 mr-1 section-label">Rodzaj zadania:</h4>
+        <div class="mt-2 tag text-sm tag-feature">
+          feature
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="ml-2"><button class="button button-primary">Edytuj</button></div>
+        <div class="ml-2"><button class="button button-default">Zamknij</button></div>
+      </div>
+    </div>
+  </div>
+  <!---->
+</div>
+`;

@@ -70,7 +70,7 @@
 
 <script>
 import Modal from '@/components/Modal'
-import Button from '@/elements/buttons/Button'
+import Button from '@/elements/Button'
 import Select from '@/elements/Select'
 import Tag from '@/elements/Tag'
 import { mapActions, mapGetters } from 'vuex'

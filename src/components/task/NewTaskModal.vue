@@ -42,9 +42,9 @@
 
 <script>
 import Modal from '@/components/Modal'
-import Button from '@/elements/buttons/Button'
+import Button from '@/elements/Button'
 import Select from '@/elements/Select'
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'NewTaskModal',
@@ -70,9 +70,6 @@ export default {
     isEditing: false,
     isValid: true
   }),
-  computed: {
-    ...mapGetters(['taskId'])
-  },
   methods: {
     ...mapActions(['changeNewTaskModalState', 'saveTask']),
     saveChanges () {
@@ -86,8 +83,8 @@ export default {
         })
         .catch(() => {
           console.log(this.errors.all())
-          return false
         })
+      console.log(this.errors.all())
     },
     closeModal () {
       this.$store.dispatch('changeNewTaskModalState', false)
