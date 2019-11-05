@@ -1,5 +1,5 @@
 export default {
-  changeNewTaskModalState (context, payload) { context.commit('CHANGE_EDIT_TASK_MODAL_STATE', payload) },
+  changeNewTaskModalState (context, payload) { context.commit('CHANGE_NEW_TASK_MODAL_STATE', payload) },
   changeViewTaskModalState (context, payload) { context.commit('CHANGE_VIEW_TASK_MODAL_STATE', payload) },
   saveTask (context, payload) { context.commit('SAVE_TASK', payload) },
   setActiveCard (context, payload) { context.commit('SET_ACTIVE_CARD', payload) },

@@ -16,7 +16,7 @@ describe('Board', () => {
   beforeEach(() => {
     state = mockState.state
     getters = {
-      editModalIsOpen: () => false
+      newModalIsOpen: () => false
     }
     actions = {
       changeNewTaskModalState: jest.fn()

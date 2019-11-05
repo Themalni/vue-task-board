@@ -1,7 +1,7 @@
 export default {
   state: {
     activeTask: null,
-    editModalIsOpen: false,
+    newModalIsOpen: false,
     categories: [
       {
         id: 'c1',
