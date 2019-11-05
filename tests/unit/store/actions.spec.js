@@ -8,7 +8,7 @@ describe('Actions', () => {
 
   it('changeNewTaskModalState', () => {
     actions.changeNewTaskModalState(context, payload)
-    expect(context.commit).toHaveBeenCalledWith('CHANGE_EDIT_TASK_MODAL_STATE', payload)
+    expect(context.commit).toHaveBeenCalledWith('CHANGE_NEW_TASK_MODAL_STATE', payload)
   })
   it('changeViewTaskModalState', () => {
     actions.changeViewTaskModalState(context, payload)

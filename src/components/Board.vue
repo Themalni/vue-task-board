@@ -7,7 +7,7 @@
     <div class="board-body">
       <slot></slot>
     </div>
-    <New-Task-Modal v-if="editModalIsOpen"></New-Task-Modal>
+    <New-Task-Modal v-if="newModalIsOpen"></New-Task-Modal>
   </div>
 </template>
 
@@ -31,7 +31,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['editModalIsOpen'])
+    ...mapGetters(['newModalIsOpen'])
   },
   methods: {
     ...mapActions(['changeNewTaskModalState']),

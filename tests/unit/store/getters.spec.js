@@ -11,8 +11,8 @@ describe('Vuex getters', () => {
   it('categories', () => {
     expect(getters.categories(state)).toBe(state.categories)
   })
-  it('editModalIsOpen', () => {
-    expect(getters.editModalIsOpen(state)).toBeFalsy()
+  it('newModalIsOpen', () => {
+    expect(getters.newModalIsOpen(state)).toBeFalsy()
   })
   it('viewModalIsOpen', () => {
     expect(getters.viewModalIsOpen(state)).toBeFalsy()

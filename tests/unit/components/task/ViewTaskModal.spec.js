@@ -19,7 +19,7 @@ describe('ViewTaskModal', () => {
     state = mockState.state
     getters = {
       activeTask: () => state.categories[0].tasks[0],
-      editModalIsOpen: () => false
+      newModalIsOpen: () => false
     }
     actions = {
       changeViewTaskModalState: jest.fn(),

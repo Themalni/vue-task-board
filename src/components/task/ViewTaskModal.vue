@@ -94,7 +94,7 @@ export default {
     }
   }),
   computed: {
-    ...mapGetters(['activeTask', 'editModalIsOpen'])
+    ...mapGetters(['activeTask', 'newModalIsOpen'])
   },
   methods: {
     ...mapActions([

@@ -2,8 +2,8 @@ import Vue from 'vue'
 import uuidv1 from 'uuid/v1'
 
 export default {
-  CHANGE_EDIT_TASK_MODAL_STATE (state, payload) {
-    state.editModalIsOpen = payload
+  CHANGE_NEW_TASK_MODAL_STATE (state, payload) {
+    state.newModalIsOpen = payload
   },
   CHANGE_VIEW_TASK_MODAL_STATE (state, payload) {
     state.viewModalIsOpen = payload

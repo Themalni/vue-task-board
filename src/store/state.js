@@ -38,7 +38,7 @@ export default {
       tasks: []
     }
   ],
-  editModalIsOpen: false,
+  newModalIsOpen: false,
   viewModalIsOpen: false,
   activeTask: null
 }

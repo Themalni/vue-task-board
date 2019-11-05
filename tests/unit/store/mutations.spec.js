@@ -7,10 +7,10 @@ beforeEach(() => {
   state = mockState.state
 })
 
-describe('CHANGE_EDIT_TASK_MODAL_STATE', () => {
-  it('Changes editTaskModalState', () => {
-    mutations.CHANGE_EDIT_TASK_MODAL_STATE(state, true)
-    expect(state.editModalIsOpen).toBeTruthy()
+describe('CHANGE_NEW_TASK_MODAL_STATE', () => {
+  it('Changes newTaskModalState', () => {
+    mutations.CHANGE_NEW_TASK_MODAL_STATE(state, true)
+    expect(state.newModalIsOpen).toBeTruthy()
   })
 })
 
