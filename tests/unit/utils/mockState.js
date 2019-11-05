@@ -20,6 +20,13 @@ export default {
             description: 'Opis zadania #2',
             type: 'bugfix',
             status: 'Oczekujące'
+          },
+          {
+            id: '8ee39380-d450-32e0-03bb-0b232a69b89a',
+            categoryId: 'c1',
+            description: 'Opis zadania #3',
+            type: 'default',
+            status: 'Oczekujące'
           }
         ]
       },
